@@ -37,13 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\LSystemRules\Rule.cs" />
-     <Compile Include="Assets\Scripts\SimpleVisualizer.cs" />
-     <Compile Include="Assets\Scripts\LSystemGenerator.cs" />
-     <Compile Include="Assets\Scripts\AgentParameters.cs" />
-     <Compile Include="Assets\Scripts\NoiseGenerator\Noise.cs" />
-     <Compile Include="Assets\Scripts\NoiseGenerator\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\NoiseGenerator\MapDisplay.cs" />
      <Compile Include="Assets\Scripts\NoiseGenerator\MapEditorGenerator.cs" />
+     <Compile Include="Assets\Scripts\NoiseGenerator\MapGenerator.cs" />
+     <Compile Include="Assets\Scripts\SimpleVisualizer.cs" />
+     <Compile Include="Assets\Scripts\NoiseGenerator\Noise.cs" />
+     <Compile Include="Assets\Scripts\LSystemGenerator.cs" />
+     <Compile Include="Assets\Scripts\AgentParameters.cs" />
+     <Compile Include="Assets\Scripts\NoiseGenerator\TextureGenerator.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Unity/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
