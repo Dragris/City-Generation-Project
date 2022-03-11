@@ -23,9 +23,10 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
+    public float[,] noiseMap;
 
     public void GenerateMap() {
-        float[,] noiseMap = Noise.GenerateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        noiseMap = Noise.GenerateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
         Color[] colourMap = new Color[mapWidth * mapHeight];
         for (int y = 0; y < mapHeight; y++) {
@@ -74,4 +75,5 @@ public struct TerrainType {
     public string name;
     public float height;
     public Color colour;
+    public bool buildable;
 }

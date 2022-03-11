@@ -172,23 +172,27 @@ MonoBehaviour:
   noiseScale: 20
   octaves: 1
   persistance: 0
-  lacunarity: 1.6
-  seed: 3
-  offset: {x: -11.35, y: 0.55}
+  lacunarity: 1
+  seed: 9
+  offset: {x: -11.34, y: 0.55}
   autoUpdate: 1
   regions:
   - name: Water
     height: 0.4
     colour: {r: 0.13568495, g: 0.039248828, b: 0.9245283, a: 0}
+    buildable: 1
   - name: Grass
     height: 0.6
     colour: {r: 0.09686232, g: 0.745283, b: 0.06679422, a: 0}
+    buildable: 0
   - name: Rock
     height: 0.8
     colour: {r: 0.3962264, g: 0.37940547, b: 0.37940547, a: 0}
+    buildable: 0
   - name: Land
     height: 1
     colour: {r: 1, g: 1, b: 1, a: 0}
+    buildable: 1
 --- !u!4 &243312340
 Transform:
   m_ObjectHideFlags: 0
@@ -492,7 +496,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 7
+  iterationLimit: 2
 --- !u!4 &1660955182
 Transform:
   m_ObjectHideFlags: 0
@@ -542,6 +546,7 @@ MonoBehaviour:
   lengthForNextPoint: 8
   angle: 90
   lengthDelta: 2
+  map: {fileID: 243312339}
 --- !u!4 &1871479460
 Transform:
   m_ObjectHideFlags: 0
