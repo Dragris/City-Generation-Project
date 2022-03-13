@@ -51,8 +51,9 @@ public class LSystemGenerator : MonoBehaviour
         foreach (var rule in rules)
         {
             if (rule.letter == c.ToString())
-            {
-                if (randomIgnoreRuleModifier) {
+            {   
+                // Always generate the first branch, otherwise we could end up without city
+                if (randomIgnoreRuleModifier && currentIteration > 1) {
                     System.Random subprng = new System.Random(rule.seed+prng.Next());
                     float randomValue = (float)subprng.Next(0, 10)/10f;
                     if (randomValue < changeToIgnoreRule) {
