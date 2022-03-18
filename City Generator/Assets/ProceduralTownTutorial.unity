@@ -496,9 +496,9 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 2
+  iterationLimit: 4
   randomIgnoreRuleModifier: 1
-  changeToIgnoreRule: 0.3
+  changeToIgnoreRule: 0
   seed: 0
 --- !u!4 &1660955182
 Transform:

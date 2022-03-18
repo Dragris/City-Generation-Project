@@ -18,4 +18,4 @@ MonoBehaviour:
   - '[+F]F[-F]'
   - '[-F]F[+F]'
   randomResult: 1
-  seed: 126
+  seed: 1

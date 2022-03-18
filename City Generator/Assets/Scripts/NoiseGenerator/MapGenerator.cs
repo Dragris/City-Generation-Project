@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour
 
     public int octaves;
     [Range(0,1)]
-    public float persistance;
+    public float persistence;
     public float lacunarity;
     public int seed;
     public Vector2 offset;
@@ -26,7 +26,7 @@ public class MapGenerator : MonoBehaviour
     public float[,] noiseMap;
 
     public void GenerateMap() {
-        noiseMap = Noise.GenerateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        noiseMap = Noise.GenerateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistence, lacunarity, offset);
 
         Color[] colourMap = new Color[mapWidth * mapHeight];
         for (int y = 0; y < mapHeight; y++) {
