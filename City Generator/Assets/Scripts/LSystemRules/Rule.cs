@@ -8,7 +8,7 @@ public class Rule : ScriptableObject
 {
     public string letter; // Letter to trigger this rule
     [SerializeField] // Will allow to edit in Unity
-    private string[] results = null;
+    private string[] rewritingRules = null;
     [SerializeField]
     private bool randomResult = false;
     public int seed = 0;
@@ -23,9 +23,9 @@ public class Rule : ScriptableObject
         if (randomResult) {
             System.Random prng = new System.Random(seed);
             //  Get the random index 
-            randomIndex = prng.Next(0,results.Length);
+            randomIndex = prng.Next(0,rewritingRules.Length);
         }
         
-        return results[randomIndex];
+        return rewritingRules[randomIndex];
     }
 }

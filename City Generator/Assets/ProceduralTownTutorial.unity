@@ -488,9 +488,9 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 4
+  iterationLimit: 5
   randomIgnoreRuleModifier: 1
-  changeToIgnoreRule: 0
+  chanceToIgnoreRule: 0.3
   seed: 0
 --- !u!4 &1660955182
 Transform:
@@ -538,9 +538,9 @@ MonoBehaviour:
   lsystem: {fileID: 1660955181}
   prefab: {fileID: 969913953833191747, guid: c0937956d2374a940a7fcd11e218a52b, type: 3}
   lineMaterial: {fileID: 2100000, guid: 1b061dac8984c0b47b91c5f4a694d7a1, type: 2}
-  lengthForNextPoint: 8
+  lengthForNextPoint: 10
   angle: 90
-  lengthDelta: 1
+  lengthDelta: 2
   map: {fileID: 243312339}
 --- !u!4 &1871479460
 Transform:

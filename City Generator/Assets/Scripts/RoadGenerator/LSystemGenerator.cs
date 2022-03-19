@@ -8,11 +8,11 @@ public class LSystemGenerator : MonoBehaviour
     public Rule[] rules; // Array of rules that we want to use
     public string rootSentence; // Sentence from we will generate
 
-    [Range(0, 20)] // Range of iterationLimint
+    [Range(0, 10)] // Range of iterationLimint
     public int iterationLimit = 1;
     public bool randomIgnoreRuleModifier = true;
     [Range(0,1)]
-    public float changeToIgnoreRule = 0.3f;
+    public float chanceToIgnoreRule = 0.3f;
     public int seed = 0;
     private void Start()
     {
@@ -56,7 +56,7 @@ public class LSystemGenerator : MonoBehaviour
                 if (randomIgnoreRuleModifier && currentIteration > 1) {
                     System.Random subprng = new System.Random(rule.seed+prng.Next());
                     float randomValue = (float)subprng.Next(0, 10)/10f;
-                    if (randomValue < changeToIgnoreRule) {
+                    if (randomValue < chanceToIgnoreRule) {
                         // If random value is minor than the change to skip the rule we avoid generating this branch alltogether
                         return;
                     }
