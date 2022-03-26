@@ -18,5 +18,5 @@ MonoBehaviour:
   - '[-F][+F]'
   - '[+F]F[-F]'
   - '[-F]F[+F]'
-  randomResult: 0
-  seed: 1
+  randomResult: 1
+  seed: 23

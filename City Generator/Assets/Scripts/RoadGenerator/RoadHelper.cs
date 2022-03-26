@@ -18,10 +18,11 @@ public class RoadHelper : MonoBehaviour
             // Rotates the road if it goes to the Z direction
             rotation = Quaternion.Euler(0, 90, 0);
         }
-
+        var position = new Vector3Int(0,0,0);
         for (int i = 0; i < length; i++) {
             // This gives the position to the next road
-            var position = Vector3Int.RoundToInt(startPosition + direction * i);
+            var previousposition = position;
+            position = Vector3Int.RoundToInt(startPosition + direction * i);
             print(position);
             if (roadDictionary.ContainsKey(position)){
                 continue;
@@ -29,7 +30,7 @@ public class RoadHelper : MonoBehaviour
             
             if (!Buildable(position.x, position.z)) {
                 // We break the loop of continuing the street
-                fixRoadCandidates.Add(position); // Add the road to be fixed in a later pass
+                if (i != 0) fixRoadCandidates.Add(previousposition); // Add the road to be fixed in a later pass
                 return;
                 // If we want to continue the street when the land becomes buildable again, use continue
                 continue;
@@ -40,6 +41,57 @@ public class RoadHelper : MonoBehaviour
 
             if (i == 0 ||i == length - 1) {
                 fixRoadCandidates.Add(position);
+            }
+        }
+    }
+
+    public void FixRoad()
+    {
+        // Iterate over each road candidate to fix
+        foreach (var position in fixRoadCandidates)
+        {
+            List<Direction> neighbourDirections = PlacementHelper.FindNeighbour(position, roadDictionary.Keys);
+
+            Quaternion rotation = Quaternion.identity;
+            // Don't call destroy before as there is a statement where it is not necessary
+            if (neighbourDirections.Count == 1) {
+                // Road end
+                Destroy(roadDictionary[position]);
+
+                // Get rotation for road end, default rotation is Right
+                if (neighbourDirections.Contains(Direction.Down)) rotation = Quaternion.Euler(0,90,0);
+                if (neighbourDirections.Contains(Direction.Left)) rotation = Quaternion.Euler(0,180,0);
+                if (neighbourDirections.Contains(Direction.Up)) rotation = Quaternion.Euler(0,270,0);
+
+                roadDictionary[position] = Instantiate(roadEnd, position, rotation, transform);
+
+            } else if (neighbourDirections.Count == 2) {
+                if (neighbourDirections.Contains(Direction.Up) && neighbourDirections.Contains(Direction.Down) ||
+                neighbourDirections.Contains(Direction.Right) && neighbourDirections.Contains(Direction.Left)) {
+                    // This is still a straight road, just continue
+                    continue;
+                } else {
+                    // Place a corner, default is Left and Up
+                    Destroy(roadDictionary[position]);
+                    if (neighbourDirections.Contains(Direction.Up) && neighbourDirections.Contains(Direction.Right)) rotation = Quaternion.Euler(0,90,0);
+                    if (neighbourDirections.Contains(Direction.Right) && neighbourDirections.Contains(Direction.Down)) rotation = Quaternion.Euler(0,180,0);
+                    if (neighbourDirections.Contains(Direction.Down) && neighbourDirections.Contains(Direction.Left)) rotation = Quaternion.Euler(0,270,0);
+
+                    roadDictionary[position] = Instantiate(roadCorner, position, rotation, transform);
+                }
+            } else if (neighbourDirections.Count == 3) {
+                // Place the 3 way, default is to Up, Right and Down
+                Destroy(roadDictionary[position]);
+                
+                if (neighbourDirections.Contains(Direction.Right) && neighbourDirections.Contains(Direction.Down) && neighbourDirections.Contains(Direction.Left)) rotation = Quaternion.Euler(0,90,0);
+                if (neighbourDirections.Contains(Direction.Down) && neighbourDirections.Contains(Direction.Left) && neighbourDirections.Contains(Direction.Up)) rotation = Quaternion.Euler(0,180,0);
+                if (neighbourDirections.Contains(Direction.Left) && neighbourDirections.Contains(Direction.Up) && neighbourDirections.Contains(Direction.Right)) rotation = Quaternion.Euler(0,270,0);
+
+                roadDictionary[position] = Instantiate(road3Way, position, rotation, transform);
+            } else {
+                // 4 Way split
+                Destroy(roadDictionary[position]);
+                roadDictionary[position] = Instantiate(road4Way, position, rotation, transform);
             }
         }
     }

@@ -9,7 +9,7 @@ public class RoadVisualizer : MonoBehaviour
     List<Vector3> positions = new List<Vector3>(); // List of positions our agent has travelled to
     public RoadHelper roadHelper;
 
-    public int lengthForNextPoint = 8;
+    public int initialLength = 8;
     public float angle = 90;  // As the prefab is using roads of 90� it's the only option that we have
     [Range(0, 20)]
     public int lengthDelta =  2;
@@ -20,16 +20,16 @@ public class RoadVisualizer : MonoBehaviour
     {
         get
         {
-            if (lengthForNextPoint > 0)
+            if (initialLength > 0)
             {
-                return lengthForNextPoint;
+                return initialLength;
             } else
             {
                 return 1; // Length has to be higher than 0 to be visualized
             }
                 
         }
-        set => lengthForNextPoint = value;
+        set => initialLength = value;
     }
 
     private void Start()
@@ -78,7 +78,7 @@ public class RoadVisualizer : MonoBehaviour
 
                 case EncodingLetters.draw:
                     tempPosition = currentPosition;
-                    currentPosition += direction * lengthForNextPoint;  // Gives us the new point in the direction that we want.
+                    currentPosition += direction * initialLength;  // Gives us the new point in the direction that we want.
                     roadHelper.PlaceStreetPositions(tempPosition, Vector3Int.RoundToInt(direction), Length, this.map);
                     Length -= lengthDelta; // We reduce the size of the line
                     positions.Add(currentPosition);
@@ -96,7 +96,7 @@ public class RoadVisualizer : MonoBehaviour
                     throw new System.Exception("The command is not recognized.");
             }
         }
-
+        roadHelper.FixRoad();  
         
     }
 }

@@ -42,11 +42,13 @@
      <Compile Include="Assets\Scripts\NoiseGenerator\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\RoadGenerator\SimpleVisualizer.cs" />
      <Compile Include="Assets\Scripts\NoiseGenerator\Noise.cs" />
+     <Compile Include="Assets\Scripts\RoadGenerator\RoadHelper.cs" />
      <Compile Include="Assets\Scripts\RoadGenerator\LSystemGenerator.cs" />
      <Compile Include="Assets\Scripts\RoadGenerator\AgentParameters.cs" />
      <Compile Include="Assets\Scripts\NoiseGenerator\TextureGenerator.cs" />
-     <Compile Include="Assets\Scripts\RoadGenerator\RoadHelper.cs" />
      <Compile Include="Assets\Scripts\RoadGenerator\RoadVisualizer.cs" />
+     <Compile Include="Assets\Scripts\RoadGenerator\Direction.cs" />
+     <Compile Include="Assets\Scripts\RoadGenerator\PlacementHelper.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Unity/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
