@@ -8,6 +8,7 @@ public class RoadVisualizer : MonoBehaviour
     public LSystemGenerator lsystem;
     List<Vector3> positions = new List<Vector3>(); // List of positions our agent has travelled to
     public RoadHelper roadHelper;
+    public StructureHelper structureHelper;
 
     public int initialLength = 8;
     public float angle = 90;  // As the prefab is using roads of 90� it's the only option that we have
@@ -97,6 +98,6 @@ public class RoadVisualizer : MonoBehaviour
             }
         }
         roadHelper.FixRoad();  
-        
+        structureHelper.PlaceStructuresAroundRoad(roadHelper.GetRoadPositions(), map);
     }
 }

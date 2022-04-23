@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoadHelper : MonoBehaviour
@@ -8,6 +9,12 @@ public class RoadHelper : MonoBehaviour
     Dictionary<Vector3Int, GameObject> roadDictionary = new Dictionary<Vector3Int, GameObject>();
     // This is to know if we need to change the prefab of the roads, to do corners
     HashSet<Vector3Int> fixRoadCandidates = new HashSet<Vector3Int>();
+
+    public List<Vector3Int> GetRoadPositions()
+    {
+        return roadDictionary.Keys.ToList();
+    }
+
     MapGenerator map;
 
     public async void PlaceStreetPositions(Vector3 startPosition, Vector3Int direction, int length, MapGenerator map) {

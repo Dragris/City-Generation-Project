@@ -27,4 +27,40 @@ public static class PlacementHelper
         
         return neighbourDirections; 
     }
+
+    internal static Vector3Int GetOffsetFromDirection(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return new Vector3Int(0, 0, 1);
+            case Direction.Down:
+                return new Vector3Int(0, 0, -1);
+            case Direction.Left:
+                return Vector3Int.left;
+            case Direction.Right:
+                return Vector3Int.right;
+            default:
+                break;
+        }
+        throw new System.Exception("No direction " + direction);
+    }
+
+    public static Direction GetReverseDirection(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return Direction.Down;
+            case Direction.Down:
+                return Direction.Up;
+            case Direction.Left:
+                return Direction.Right;
+            case Direction.Right:
+                return Direction.Left;
+            default:
+                break;
+        }
+        throw new System.Exception("No direction " + direction);
+    }
 }
