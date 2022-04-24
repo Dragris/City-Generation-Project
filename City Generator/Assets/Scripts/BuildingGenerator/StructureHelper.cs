@@ -7,11 +7,22 @@ public class StructureHelper : MonoBehaviour
     public BuildingType[] buildingTypes;
     public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>();
     public int seed;
+
+    public bool randomNaturePlacement = false;
+    public GameObject[] naturePrefabs;
+    [Range(0,1)]
+    public float randomNaturePlacementThreshold = 0.3f;
+    public int natureSeed;
+    public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>(); 
+    
     public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions, MapGenerator map) 
     {
         // Create prng to call the buildings
         System.Random prng = new System.Random(seed);
-        
+
+        // Create prng to call the "nature"
+        System.Random prngNature = new System.Random(seed);
+
         // Called from roadHelper
         Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpacesAroundRoad(roadPositions, map);
         List<Vector3Int> blockedPositions = new List<Vector3Int>(); 
@@ -44,6 +55,17 @@ public class StructureHelper : MonoBehaviour
                 // First place the bigger structures, then the smaller ones that can be continuously placed
                 if (buildingTypes[i].quantity == -1)
                 {
+                        // Trees will only be placed when the "infinite" building is to be placed
+                        if (randomNaturePlacement) {
+                            float randomValue = (float)prngNature.Next(0, 10)/10f;
+                            print(randomValue);
+                            if (randomValue < randomNaturePlacementThreshold)
+                            {
+                                var nature = SpawnPrefab(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], freeSpot.Key, rotation);
+                                natureDictionary.Add(freeSpot.Key, nature);
+                                break;
+                            }
+                        }
                         var building = SpawnPrefab(buildingTypes[i].GetPrefab(prng.Next(0, buildingTypes[i].prefabs.Length)), freeSpot.Key, rotation);
                         structuresDictionary.Add(freeSpot.Key, building);
                         break;
