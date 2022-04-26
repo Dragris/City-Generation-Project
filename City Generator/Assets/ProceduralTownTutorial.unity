@@ -174,7 +174,7 @@ MonoBehaviour:
   persistence: 0.61
   lacunarity: 1.05
   seed: 9
-  offset: {x: 1.05, y: 0.55}
+  offset: {x: 0.64, y: 0.51}
   autoUpdate: 1
   regions:
   - name: Water
@@ -234,7 +234,7 @@ MonoBehaviour:
   lsystem: {fileID: 1660955181}
   roadHelper: {fileID: 797185982}
   structureHelper: {fileID: 872851910}
-  initialLength: 8
+  initialLength: 4
   angle: 90
   lengthDelta: 0
   map: {fileID: 243312339}
@@ -425,7 +425,7 @@ MonoBehaviour:
     - {fileID: 2507707691550815495, guid: 59ffc13d9fb598240ac517fe6fb6fd9c, type: 3}
     - {fileID: 3866452111178995711, guid: 62dd89dfe4948b744ac32fe5d0249467, type: 3}
     sizeRequired: 1
-    quantity: 150
+    quantity: -1
     quantityAlreadyPlaced: 0
   - prefabs:
     - {fileID: 6611407531028321825, guid: e4e3476b5a3e23a479a803b108d04c9c, type: 3}
@@ -441,7 +441,7 @@ MonoBehaviour:
   - {fileID: 6315202082271303812, guid: 2918e207393839d4da9ffe1bb063b87b, type: 3}
   - {fileID: 522670404799392065, guid: 80475cdfa7e2f1740b6d1390ad3c04e4, type: 3}
   - {fileID: 2906499288724287655, guid: 81bfe059d50b91d4697432147ebf4d1a, type: 3}
-  randomNaturePlacementThreshold: 0.3
+  randomNaturePlacementThreshold: 0.1
   natureSeed: 0
 --- !u!4 &872851911
 Transform:
@@ -653,7 +653,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 2
+  iterationLimit: 10
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0
   seed: 2

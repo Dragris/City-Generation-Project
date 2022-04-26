@@ -58,9 +58,23 @@ public class StructureHelper : MonoBehaviour
                         // Trees will only be placed when the "infinite" building is to be placed
                         if (randomNaturePlacement) {
                             float randomValue = (float)prngNature.Next(0, 10)/10f;
-                            print(randomValue);
                             if (randomValue < randomNaturePlacementThreshold)
                             {
+                                // TODO iterate to do up to 4 trees with the random seed
+                                // The trees need random offset, use the seed
+                                // Add random rotation to each tree (USE THE SEEEEEEEEED)
+                                int numTrees = prngNature.Next(2,4);
+                                print("Trees: " + numTrees);
+                                for (int j = 0; j < numTrees; j++)
+                                {
+                                    float offSetX = prngNature.Next(-5, 5)/10f;
+                                    float offsetZ = prngNature.Next(-5, 5)/10f;
+                                    Vector3 treePosition = freeSpot.Key + new Vector3(offSetX, 0, offsetZ);
+                                    print("FreeSpot: " + freeSpot.Key + " | Position of tree" + treePosition);
+                                    var treeRotation = Quaternion.Euler(0, prngNature.Next(0, 359), 0);
+
+                                    Instantiate(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], treePosition, treeRotation);
+                                }
                                 var nature = SpawnPrefab(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], freeSpot.Key, rotation);
                                 natureDictionary.Add(freeSpot.Key, nature);
                                 break;
@@ -111,7 +125,10 @@ public class StructureHelper : MonoBehaviour
                 if (neighbourDirections.Contains(direction) == false)
                 {
                     var newPosition = position + PlacementHelper.GetOffsetFromDirection(direction);
-                    if (freeSpaces.ContainsKey(newPosition) || !Buildable(newPosition.x, newPosition.z, map))
+                    bool buildable = Buildable(position.x, position.z, map) && Buildable(position.x+1.5f, position.z+1.5f, map)
+                                    && Buildable(position.x+1.5f, position.z-1.5f, map) && Buildable(position.x-1.5f, position.z+1.5f, map)
+                                    && Buildable(position.x-1.5f, position.z-1.5f, map);
+                    if (freeSpaces.ContainsKey(newPosition) || !buildable)
                     { // If position already exists or not buildable
                         continue;
                     }

@@ -35,7 +35,9 @@ public class RoadHelper : MonoBehaviour
                 continue;
             }
             
-            if (!Buildable(position.x, position.z)) {
+            if (!Buildable(position.x, position.z) || !Buildable(position.x+1, position.z)
+            || !Buildable(position.x-1, position.z) || !Buildable(position.x, position.z+1)
+            || !Buildable(position.x, position.z-1)) {
                 // We break the loop of continuing the street
                 if (i != 0) fixRoadCandidates.Add(previousposition); // Add the road to be fixed in a later pass
                 return;
@@ -106,7 +108,6 @@ public class RoadHelper : MonoBehaviour
     public bool Buildable(float x, float y) {
             // Get current height to later find which region are we in
             // We truncate position to be in the same square
-            print("X: " + x + " | Y: " + y);
             float inMapPositionX = (map.mapWidth/2) - x/10;
             float inMapPositionY = (map.mapHeight/2) - y/10;
             float currentHeight = map.noiseMap [(int)inMapPositionX, (int)inMapPositionY];
@@ -121,7 +122,6 @@ public class RoadHelper : MonoBehaviour
                     }
                 }
             // If terrain is not buildable we skip positioning here anything
-            print("Buildable: " + buildableTerrain);    
             return buildableTerrain;
         }
 }
