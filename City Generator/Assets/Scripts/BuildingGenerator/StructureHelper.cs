@@ -12,8 +12,11 @@ public class StructureHelper : MonoBehaviour
     public GameObject[] naturePrefabs;
     [Range(0,1)]
     public float randomNaturePlacementThreshold = 0.3f;
+    [Range(1, 4)]
+    public int minimumNumberOfTreesPerPlot = 2;
     public int natureSeed;
-    public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>(); 
+    public Dictionary<Vector3, GameObject> natureDictionary = new Dictionary<Vector3, GameObject>();
+
     
     public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions, MapGenerator map) 
     {
@@ -53,30 +56,31 @@ public class StructureHelper : MonoBehaviour
             for (int i = 0; i < buildingTypes.Length; i++)
             {
                 // First place the bigger structures, then the smaller ones that can be continuously placed
-                if (buildingTypes[i].quantity == -1)
+                if (i == buildingTypes.Length -1)
                 {
                         // Trees will only be placed when the "infinite" building is to be placed
                         if (randomNaturePlacement) {
                             float randomValue = (float)prngNature.Next(0, 10)/10f;
                             if (randomValue < randomNaturePlacementThreshold)
                             {
-                                // TODO iterate to do up to 4 trees with the random seed
-                                // The trees need random offset, use the seed
-                                // Add random rotation to each tree (USE THE SEEEEEEEEED)
-                                int numTrees = prngNature.Next(2,4);
-                                print("Trees: " + numTrees);
+                                int numTrees = prngNature.Next(minimumNumberOfTreesPerPlot, 5);
                                 for (int j = 0; j < numTrees; j++)
                                 {
                                     float offSetX = prngNature.Next(-5, 5)/10f;
                                     float offsetZ = prngNature.Next(-5, 5)/10f;
                                     Vector3 treePosition = freeSpot.Key + new Vector3(offSetX, 0, offsetZ);
-                                    print("FreeSpot: " + freeSpot.Key + " | Position of tree" + treePosition);
+                                    // Try to regenerate if position already occupied
+                                    if (natureDictionary.ContainsKey(treePosition))
+                                    {
+                                        j--;
+                                        continue;
+                                    }
                                     var treeRotation = Quaternion.Euler(0, prngNature.Next(0, 359), 0);
 
-                                    Instantiate(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], treePosition, treeRotation);
+                                    var newTree = Instantiate(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], treePosition, treeRotation);
+                                    natureDictionary.Add(treePosition, newTree);
                                 }
-                                var nature = SpawnPrefab(naturePrefabs[prngNature.Next(0, naturePrefabs.Length)], freeSpot.Key, rotation);
-                                natureDictionary.Add(freeSpot.Key, nature);
+                                
                                 break;
                             }
                         }
@@ -84,7 +88,12 @@ public class StructureHelper : MonoBehaviour
                         structuresDictionary.Add(freeSpot.Key, building);
                         break;
                 }
-                if (buildingTypes[i].IsBuildingAvailable())
+                print("Already placed = " + buildingTypes[i].quantityAlreadyPlaced);
+                print("Amount of free real estate = " + freeEstateSpots.Count);
+                print("Percentage = " + buildingTypes[i].quantity/100f);
+                print("Amount I should want to place = " + freeEstateSpots.Count*(buildingTypes[i].quantity/100f));
+
+                if (buildingTypes[i].quantityAlreadyPlaced < Mathf.CeilToInt(freeEstateSpots.Count*(buildingTypes[i].quantity/100f)))
                 {
                     // If it has been placed less than enough times...
                     if (buildingTypes[i].sizeRequired > 1)
@@ -176,7 +185,6 @@ public class StructureHelper : MonoBehaviour
     public bool Buildable(float x, float y, MapGenerator map) {
             // Get current height to later find which region are we in
             // We truncate position to be in the same square
-            print("X: " + x + " | Y: " + y);
             float inMapPositionX = (map.mapWidth/2) - x/10;
             float inMapPositionY = (map.mapHeight/2) - y/10;
             float currentHeight = map.noiseMap [(int)inMapPositionX, (int)inMapPositionY];
@@ -190,8 +198,7 @@ public class StructureHelper : MonoBehaviour
                         break;
                     }
                 }
-            // If terrain is not buildable we skip positioning here anything
-            print("Buildable: " + buildableTerrain);    
+            // If terrain is not buildable we skip positioning here anything  
             return buildableTerrain;
         }
 }

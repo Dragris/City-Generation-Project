@@ -30,7 +30,6 @@ public class RoadHelper : MonoBehaviour
             // This gives the position to the next road
             var previousposition = position;
             position = Vector3Int.RoundToInt(startPosition + direction * i);
-            print(position);
             if (roadDictionary.ContainsKey(position)){
                 continue;
             }
@@ -44,7 +43,6 @@ public class RoadHelper : MonoBehaviour
                 // If we want to continue the street when the land becomes buildable again, use continue
                 continue;
             }
-            print("built");
             var road = Instantiate(roadStraight, position, rotation, transform);
             roadDictionary.Add(position, road);
 

@@ -172,9 +172,9 @@ MonoBehaviour:
   noiseScale: 15
   octaves: 10
   persistence: 0.61
-  lacunarity: 1.05
+  lacunarity: 1
   seed: 9
-  offset: {x: 0.64, y: 0.51}
+  offset: {x: 0.46, y: 1.71}
   autoUpdate: 1
   regions:
   - name: Water
@@ -234,9 +234,9 @@ MonoBehaviour:
   lsystem: {fileID: 1660955181}
   roadHelper: {fileID: 797185982}
   structureHelper: {fileID: 872851910}
-  initialLength: 4
+  initialLength: 12
   angle: 90
-  lengthDelta: 0
+  lengthDelta: 4
   map: {fileID: 243312339}
 --- !u!114 &797185982
 MonoBehaviour:
@@ -414,24 +414,18 @@ MonoBehaviour:
   - prefabs:
     - {fileID: 3962440082643158057, guid: 5689e4726bc2a8a48bcc36605fba918e, type: 3}
     sizeRequired: 2
-    quantity: 1
+    quantity: 0.03
     quantityAlreadyPlaced: 0
   - prefabs:
     - {fileID: 5418577439970722738, guid: ec611ae9f609edc4cad3995c701a4072, type: 3}
     sizeRequired: 2
-    quantity: 2
+    quantity: 0.12
     quantityAlreadyPlaced: 0
   - prefabs:
     - {fileID: 2507707691550815495, guid: 59ffc13d9fb598240ac517fe6fb6fd9c, type: 3}
     - {fileID: 3866452111178995711, guid: 62dd89dfe4948b744ac32fe5d0249467, type: 3}
     sizeRequired: 1
-    quantity: -1
-    quantityAlreadyPlaced: 0
-  - prefabs:
-    - {fileID: 6611407531028321825, guid: e4e3476b5a3e23a479a803b108d04c9c, type: 3}
-    - {fileID: 6841383266756804668, guid: 32e5c407a77f7744c866fb16abd37898, type: 3}
-    sizeRequired: 1
-    quantity: -1
+    quantity: 0
     quantityAlreadyPlaced: 0
   seed: 1
   randomNaturePlacement: 1
@@ -441,7 +435,8 @@ MonoBehaviour:
   - {fileID: 6315202082271303812, guid: 2918e207393839d4da9ffe1bb063b87b, type: 3}
   - {fileID: 522670404799392065, guid: 80475cdfa7e2f1740b6d1390ad3c04e4, type: 3}
   - {fileID: 2906499288724287655, guid: 81bfe059d50b91d4697432147ebf4d1a, type: 3}
-  randomNaturePlacementThreshold: 0.1
+  randomNaturePlacementThreshold: 0.6
+  minimumNumberOfTreesPerPlot: 3
   natureSeed: 0
 --- !u!4 &872851911
 Transform:
@@ -653,10 +648,10 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 10
+  iterationLimit: 7
   randomIgnoreRuleModifier: 1
-  chanceToIgnoreRule: 0
-  seed: 2
+  chanceToIgnoreRule: 0.67
+  seed: 356
 --- !u!4 &1660955182
 Transform:
   m_ObjectHideFlags: 0
