@@ -24,7 +24,7 @@ public class StructureHelper : MonoBehaviour
         System.Random prng = new System.Random(seed);
 
         // Create prng to call the "nature"
-        System.Random prngNature = new System.Random(seed);
+        System.Random prngNature = new System.Random(natureSeed);
 
         // Called from roadHelper
         Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpacesAroundRoad(roadPositions, map);
