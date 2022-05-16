@@ -171,10 +171,10 @@ MonoBehaviour:
   mapHeight: 50
   noiseScale: 15
   octaves: 10
-  persistence: 0.61
+  persistence: 0.54
   lacunarity: 1
   seed: 9
-  offset: {x: 0.46, y: 1.71}
+  offset: {x: 0.55, y: 0.53}
   autoUpdate: 1
   regions:
   - name: Water
@@ -184,7 +184,7 @@ MonoBehaviour:
   - name: Grass
     height: 1
     colour: {r: 0.09686232, g: 0.745283, b: 0.06679422, a: 0}
-    buildable: 1
+    buildable: 0
 --- !u!4 &243312340
 Transform:
   m_ObjectHideFlags: 0
@@ -234,9 +234,9 @@ MonoBehaviour:
   lsystem: {fileID: 1660955181}
   roadHelper: {fileID: 797185982}
   structureHelper: {fileID: 872851910}
-  initialLength: 12
-  angle: 90
-  lengthDelta: 4
+  initialLength: 20
+  angle: 45
+  lengthDelta: 7
   map: {fileID: 243312339}
 --- !u!114 &797185982
 MonoBehaviour:
@@ -284,9 +284,9 @@ MonoBehaviour:
   lsystem: {fileID: 1660955181}
   prefab: {fileID: 969913953833191747, guid: c0937956d2374a940a7fcd11e218a52b, type: 3}
   lineMaterial: {fileID: 2100000, guid: 1b061dac8984c0b47b91c5f4a694d7a1, type: 2}
-  initialLength: 8
-  angle: 90
-  lengthDelta: 1
+  initialLength: 20
+  angle: 45
+  lengthDelta: 7
   map: {fileID: 243312339}
 --- !u!1 &800296296
 GameObject:
@@ -375,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800296296}
   m_LocalRotation: {x: 0.4927054, y: -0.22261626, z: 0.13202, w: 0.83081526}
-  m_LocalPosition: {x: 2.33, y: 8.1, z: -4.03}
+  m_LocalPosition: {x: -21.51, y: 34.16, z: 37.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -529,7 +529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572765295}
   m_LocalRotation: {x: 0.31777075, y: 0.5147767, z: -0.21323307, w: 0.76717556}
-  m_LocalPosition: {x: -16.949545, y: 14.383754, z: -9.067741}
+  m_LocalPosition: {x: -30.78, y: 41.78, z: -14.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -647,10 +647,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rules:
   - {fileID: 11400000, guid: 03975245a29d67d43a0aa18530d42fec, type: 2}
-  rootSentence: '[F]--F'
-  iterationLimit: 7
+  rootSentence: '[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]+[FF[--F]++F]'
+  iterationLimit: 1
   randomIgnoreRuleModifier: 1
-  chanceToIgnoreRule: 0.67
+  chanceToIgnoreRule: 0.1
   seed: 356
 --- !u!4 &1660955182
 Transform:

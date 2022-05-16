@@ -116,6 +116,8 @@ public class SimpleVisualizer : MonoBehaviour
             lineRenderer.endColor = color;
             lineRenderer.startWidth = 0.1f;
             lineRenderer.endWidth = 0.1f;
+            // Makes lines easier to see
+            lineRenderer.SetWidth(1.25f, 1.25f);
             lineRenderer.SetPosition(0, startPoint); // Point number 0 of the line
             lineRenderer.SetPosition(1, endPoint);  // Point number 1 of the line
         } else {

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letter: F
   rewritingRules:
-  - '[+F][-F]'
   - '[-F][+F]'
   - '[+F]F[-F]'
+  - '[+F][-F]'
   - '[-F]F[+F]'
-  randomResult: 1
-  seed: 25
+  randomResult: 0
+  seed: 23

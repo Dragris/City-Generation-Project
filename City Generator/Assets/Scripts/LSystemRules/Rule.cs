@@ -9,7 +9,6 @@ public class Rule : ScriptableObject
     public string letter; // Letter to trigger this rule
     [SerializeField] // Will allow to edit in Unity
     private string[] rewritingRules = null;
-    
     [SerializeField]
     private bool randomResult = false;
     public int seed = 0;
