@@ -9,6 +9,7 @@ public class SimpleVisualizer : MonoBehaviour
     public GameObject prefab;
     public Material lineMaterial;  // Line renderer from Unity (only to draw lines instead of using roads)
 
+    [Min(1)]
     public int initialLength = 8;
     public float angle = 90;  // As the prefab is using roads of 90 degrees it's the only option that we have
     [Range(0, 20)]

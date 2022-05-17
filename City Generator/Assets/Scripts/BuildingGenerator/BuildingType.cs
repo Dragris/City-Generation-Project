@@ -9,6 +9,7 @@ public class BuildingType
 {
     [SerializeField]
     public GameObject[] prefabs; // Here we store all the prefabs that are going to be used
+    [Min(0)]
     public int sizeRequired; // Size that the structure requires to be placed
 
     [Range(0, 100)]
